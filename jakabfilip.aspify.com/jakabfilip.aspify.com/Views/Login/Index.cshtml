@@ -1,0 +1,42 @@
+﻿@model jakabfilip.aspify.com.Models.User
+
+@{
+	ViewBag.Title = "Login";
+}
+
+
+@* // ReSharper disable once UnknownCssClass *@
+@using (Html.BeginForm("Register", "Login", FormMethod.Post, new { @class = "register-form" }))
+{
+	@Html.TextBoxFor(u => u.UserName, new { placeholder = "username", required = true })
+	@Html.PasswordFor(u => u.Password, new { placeholder = "password", required = true })
+	@Html.PasswordFor(u => u.Password, new { placeholder = "verify password", required = true })
+	@Html.TextBoxFor(u => u.Email, new { placeholder = "email", type = "email", required = true })
+	<button class="ui button" type="submit">Sign up</button>
+	<p class="message">Already have an account? <a href="javascript:">Sign in!</a></p>
+}
+
+@* // ReSharper disable once UnknownCssClass *@
+@using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "login-form" }))
+{
+	<div class="ui input">
+		@Html.TextBoxFor(u => u.UserName, new { placeholder = "username", required = true })
+	</div>
+	<div class="ui input">
+		@Html.PasswordFor(u => u.Password, new { placeholder = "password", required = true })
+	</div>
+	<button class="ui button" type="submit">Sign in</button>
+	<p class="message">Dont have an account? <a href="javascript:">Sign up!</a></p>
+}
+
+<script>
+	$(function () {
+		$(".login-form:last-child > a").click(function () {
+			$(".register-form").toggle();
+		});
+
+		$(".register-form:last-child > a").click(function () {
+			$(".login-form").toggle();
+		});
+	})
+</script>
